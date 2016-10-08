@@ -1,7 +1,8 @@
 #ifndef LEPTJSON_H__
 #define LEPTJSON_H__
 
-typedef enum { LEPT_NULL,
+typedef enum { LEPT_ERROR,
+               LEPT_NULL,
                LEPT_FALSE,
                LEPT_TRUE,
                LEPT_NUMBER,
