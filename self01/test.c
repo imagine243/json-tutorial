@@ -22,6 +22,8 @@ static int test_pass = 0;
 
 #define EXPECT_EQ_INT(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual, "%d")
 
+#define EXPECT_EQ_DOUBLE(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual, "%.17g")
+
 #define EXPECT_UNEQ_INT(expect, actual) EXPECT_EQ_BASE((expect) != (actual), expect, actual, "%d")
 
 #define TEST_ERROR(error, json)                        \
@@ -41,6 +43,15 @@ static int test_pass = 0;
         EXPECT_EQ_INT(right, lept_parse(&v, json)); \
         EXPECT_EQ_INT(value, lept_get_type(&v));    \
     } while (0)
+
+#define TEST_NUMBER(expect, json) \
+do {\
+    lept_value v; \
+    v.type = LEPT_ERROR; \
+    EXPECT_EQ_INT(LEPT_PARSE_OK, lept_parse(&v, json)); \
+    EXPECT_EQ_INT(LEPT_NUMBER, lept_get_type(&v)); \
+    EXPECT_EQ_DOUBLE(expect, lept_get_number(&v)); \
+}
 
 static void test_parse_null()
 {
