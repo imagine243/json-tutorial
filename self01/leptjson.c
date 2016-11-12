@@ -34,7 +34,7 @@ static int lept_perse_literal(lept_context* c, lept_value* v, const char* litera
     EXPECT(c, literal[0]);
 	for (i = 0; literal[i + 1]; i++)
 	{
-		if (c->json[i] != literal[i])
+		if (c->json[i] != literal[i + 1])
 		{
 			return LEPT_PARSE_INVALID_VALUE;
 		}
