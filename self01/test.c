@@ -13,7 +13,7 @@ do { \
 	if (equality) \
 		test_pass++; \
 	else { \
-	fprintf(stderr, "%s:%d: expect: " format " actual£º " format "\n", __FILE__, __LINE__, expect, actual) \
+	fprintf(stderr, "%s:%d: expect: " format " actual£º " format "\n", __FILE__, __LINE__, expect, actual); \
 	main_ret = 1; \
 	} \
 } while (0)
@@ -21,7 +21,9 @@ do { \
 #define EXPECT_EQ_INT(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual, "%d")
 
 static void test_parse_null() {
-
+	lept_value v;
+	v.type = LEPT_FALSE;
+	EXPECT_EQ_INT(LEPT_PARSE_OK, lept_parse(&v, "null"));
 }
 
 static void test_parse()
